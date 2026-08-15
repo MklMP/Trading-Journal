@@ -1225,10 +1225,15 @@ function refreshAll(){
 }
 
 async function init(){
+  // Verificar si CloudStorage funciona
+  await verifyCloudStorage();
+  Store.available = useCloud;
+
   const badge = document.getElementById('storeBadge');
   const badgeText = document.getElementById('storeBadgeText');
   const explain = document.getElementById('storageExplain');
-  if (Store.available) {
+
+  if (useCloud) {
     badgeText.textContent = 'TELEGRAM CLOUD';
     explain.textContent = 'Conectado a Telegram CloudStorage — tus datos viajan contigo entre dispositivos.';
   } else {
